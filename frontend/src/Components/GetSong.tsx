@@ -27,7 +27,7 @@ const GetSong = ({ onSubmit }: GetSongProps) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}getfromyt`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}getfromyt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
