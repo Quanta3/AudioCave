@@ -25,10 +25,24 @@ const auth = new Auth(process.env.CLIENT_ID,
     process.env.REDIRECT_URI
 );
 
-app.use(cors({
-    origin: 'http://localhost:3000', // Your frontend origin
-    credentials: true // Allow cookies to be sent
-}));
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL2
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
 
