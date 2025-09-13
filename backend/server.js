@@ -126,7 +126,7 @@ app.post('/auth', async (req, res)=>{
             const authCode = req.body.code;
             
             const arr = await auth.authorize(authCode);
-            console.log($`AFTER AUTHORIZING ${arr}`)
+            console.log(`AFTER AUTHORIZING ${arr}`)
             res.cookie("id", arr[0], {httpOnly:true});
             res.cookie("token", arr[1], {httpOnly:true});
         }
@@ -194,5 +194,5 @@ app.get('/auth/refresh', async (req, res) => {
 });
 
 app.listen(3001, ()=>{
-    console.log('Server Listening on Port 3000')
+    console.log('Server Listening on Port 3001')
 })
